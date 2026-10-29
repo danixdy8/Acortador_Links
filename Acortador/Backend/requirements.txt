@@ -1,0 +1,3 @@
+Fastapi
+Boto3
+Uvicorn
