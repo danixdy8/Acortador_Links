@@ -8,7 +8,7 @@
 const CONFIG = {
     // Si ha guardado una URL personalizada en localStorage, se utilizará esa;
     // de lo contrario, se usará la URL predeterminada definida aquí.
-    DEFAULT_API_URL: "http://localhost:8000",
+    DEFAULT_API_URL: "http://18.216.136.191:8000/",
 
     getApiUrl() {
         return localStorage.getItem("shortener_api_url") || this.DEFAULT_API_URL;
