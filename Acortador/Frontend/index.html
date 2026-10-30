@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acortador de Enlaces Cloud | AWS S3, EC2 & DynamoDB</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Encabezado -->
+        <header class="header">
+            <h1>Acortador de Enlaces</h1>
+            <p>Genera identificadores UUID únicos.</p>
+        </header>
+
+        <!-- Tarjeta Principal -->
+        <main class="card">
+            <!-- Barra informativa de la API en EC2 -->
+            <div class="api-bar">
+                <div>
+                    <strong>Backend API (EC2):</strong> <span id="api-display">http://localhost:8000</span>
+                </div>
+                <button type="button" id="change-api-btn" class="btn-link" title="Cambiar IP pública de EC2">Cambiar URL</button>
+            </div>
+
+            <!-- Alertas dinámicas -->
+            <div id="alert-error" class="alert alert-error" role="alert"></div>
+            <div id="alert-success" class="alert alert-success" role="alert"></div>
+
+            <!-- Formulario de Acortado -->
+            <form id="shorten-form">
+                <div class="form-group">
+                    <label for="original-url" class="form-label">Dirección web original a acortar:</label>
+                    <div class="input-group">
+                        <input
+                            type="url"
+                            id="original-url"
+                            class="form-input"
+                            placeholder="https://www.example.com/articulos/arquitectura-cloud"
+                            required
+                            autocomplete="off"
+                        >
+                        <button type="submit" id="submit-btn" class="btn btn-primary">
+                            <span id="spinner" class="spinner" style="display: none;"></span>
+                            <span id="btn-text">Acortar enlace</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Caja de Resultados -->
+            <section id="result-box" class="result-box" aria-live="polite">
+                <h2 class="result-title">Enlace corto generado:</h2>
+                <div class="result-url-wrapper">
+                    <input type="text" id="short-url-output" class="result-url-input" readonly>
+                </div>
+                <div class="result-actions">
+                    <button type="button" id="copy-btn" class="btn btn-copy">
+                        Copiar enlace
+                    </button>
+                    <a id="open-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-open">
+                         Abrir enlace
+                    </a>
+                </div>
+
+                <div class="result-meta">
+                    <p><strong>Identificador UUID:</strong> <span id="meta-short-code">-</span></p>
+                    <p><strong>Destino original:</strong> <span id="meta-original-url">-</span></p>
+                </div>
+            </section>
+
+            <!-- Arquitectura AWS -->
+            <div class="aws-architecture">
+                <div class="aws-pill">
+                    <strong>Amazon S3</strong>
+                    <span>Frontend estático (HTML/CSS/JS)</span>
+                </div>
+                <div class="aws-pill">
+                    <strong>Amazon EC2</strong>
+                    <span>API FastAPI + Redirección 307</span>
+                </div>
+                <div class="aws-pill">
+                    <strong>Amazon DynamoDB</strong>
+                    <span>Almacenamiento NoSQL (UUID)</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Desarrollado para el examen</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
